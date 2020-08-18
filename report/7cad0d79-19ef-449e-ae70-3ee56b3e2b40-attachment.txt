@@ -1,0 +1,8 @@
+[32mINFO    [0m root:basepage.py:23 driver.find_element(*locator).click()-->('xpath', '//*[@text="通讯录"]')
+[32mINFO    [0m root:basepage.py:28 roll-->添加成员
+[32mINFO    [0m root:basepage.py:23 driver.find_element(*locator).click()-->('id', 'com.tencent.wework:id/cgl')
+[32mINFO    [0m root:basepage.py:19 driver.find_element(*locator)-->('xpath', "//*[@text='必填']")
+[32mINFO    [0m root:basepage.py:23 driver.find_element(*locator).click()-->('id', 'com.tencent.wework:id/b0j')
+[32mINFO    [0m root:basepage.py:23 driver.find_element(*locator).click()-->('xpath', "//*[@text='男']")
+[32mINFO    [0m root:basepage.py:19 driver.find_element(*locator)-->('xpath', "//*[@text='手机号']")
+[32mINFO    [0m root:basepage.py:23 driver.find_element(*locator).click()-->('xpath', '//*[@text="保存"]')

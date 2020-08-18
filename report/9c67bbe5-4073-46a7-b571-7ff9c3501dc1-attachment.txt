@@ -1,0 +1,2 @@
+[32mINFO    [0m root:basepage.py:22 driver.find_element(*locator).click()-->('xpath', '//*[@text="通讯录"]')
+[32mINFO    [0m root:basepage.py:26 roll-->添加成员

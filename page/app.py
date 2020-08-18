@@ -1,15 +1,16 @@
 from appium import webdriver
 
+from page.basepage import BasePage
 from page.mainpage import MainPage
 
 
-class App:
+class App(BasePage):
     def start(self):
         '''启动'''
         if  self.driver==None:
             cap_des = {
                 'platformName': 'android',
-                'deviceName': '04157df40bf53115',
+                # 'deviceName': '04157df40bf53115',
                 'appPackage': 'com.tencent.wework',
                 'appActivity': '.launch.LaunchSplashActivity',
                 'noReset': 'true',
@@ -22,7 +23,7 @@ class App:
         else:
             self.driver.launch_app()
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', cap_des)
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(20)
         return self
 
     def restart(self):

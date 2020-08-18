@@ -1,3 +1,6 @@
+import pytest
+import yaml
+
 from page.app import App
 
 
@@ -6,9 +9,11 @@ class TestContact:
         self.app = App()
         self.main = self.app.start().goto_main()
 
-    def test_contact(self):
-        name = 'abc'
-        sex = '男'
-        phone = '13069856458'
-        self.main.goto_contactlist().addcontact().add_menual().set_name(name).set_gender(sex).set_phonnum(
-            phone).click_save()
+    with open('../data/data.yaml', encoding='UTF-8') as f:
+        data = yaml.safe_load(f)
+    @pytest.mark.parametrize('name,sex,phone',data)
+    def test_contact(self,name,sex,phone):
+        reslut=self.main.goto_contactlist().addcontact().add_menual().set_name(name).set_gender(sex).set_phonnum(
+            phone).click_save().get_toast()
+        assert '添加成功' in reslut
+

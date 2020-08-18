@@ -1,0 +1,9 @@
+INFO:root:driver.find_element(*locator).click()-->('xpath', '//*[@text="通讯录"]')
+INFO:root:driver.find_element(*locator)-->id和com.tencent.wework:id/hk9
+INFO:root:driver.find_element(*locator)-->xpath和//*[@text="搜索"]
+INFO:root:删除成员之前:2
+INFO:root:driver.find_element(*locator)-->id和com.tencent.wework:id/hjz
+INFO:root:driver.find_element(*locator)-->xpath和//*[@text="编辑成员"]
+INFO:root:roll-->删除成员
+INFO:root:driver.find_element(*locator)-->xpath和//*[@text='确定']
+INFO:root:删除成员之后:2

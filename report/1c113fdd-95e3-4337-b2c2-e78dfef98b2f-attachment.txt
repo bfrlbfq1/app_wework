@@ -1,0 +1,9 @@
+[32mINFO    [0m root:basepage.py:26 driver.find_element(*locator).click()-->('xpath', '//*[@text="通讯录"]')
+[32mINFO    [0m root:basepage.py:19 driver.find_element(*locator)-->id和com.tencent.wework:id/hk9
+[32mINFO    [0m root:basepage.py:19 driver.find_element(*locator)-->xpath和//*[@text="搜索"]
+[32mINFO    [0m root:searchoinput.py:24 删除成员之前:2
+[32mINFO    [0m root:basepage.py:19 driver.find_element(*locator)-->id和com.tencent.wework:id/hjz
+[32mINFO    [0m root:basepage.py:19 driver.find_element(*locator)-->xpath和//*[@text="编辑成员"]
+[32mINFO    [0m root:basepage.py:31 roll-->删除成员
+[32mINFO    [0m root:basepage.py:19 driver.find_element(*locator)-->xpath和//*[@text='确定']
+[32mINFO    [0m root:basepage.py:19 driver.find_element(*locator)-->xpath和//*[@text="搜索"]

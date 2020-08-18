@@ -2,7 +2,9 @@
 BasePage存放基础方法
 '''
 import logging
+import time
 
+import yaml
 from appium.webdriver.common.mobileby import MobileBy
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -13,12 +15,16 @@ class BasePage:
     def __init__(self, driver: WebDriver = None):
         self.driver = driver
 
-    def fing(self, locator):
-        logging.info(f'driver.find_element(*locator)-->{locator}')
-        return self.driver.find_element(*locator)
+    def fing(self, by,locator=None):
+        logging.info(f'driver.find_element(*locator)-->{by}和{locator}')
+        if locator==None:
+            return self.driver.find_element(*locator)
+        else:
+            return self.driver.find_element(by,locator)
 
     def find_click(self, locator):
         logging.info(f"driver.find_element(*locator).click()-->{locator}")
+        time.sleep(2)
         return self.driver.find_element(*locator).click()
 
     def fing_roll(self, text):
@@ -30,7 +36,7 @@ class BasePage:
                                         'instance(0)).'
                                         'scrollIntoView('
                                         'new UiSelector().'
-                                        f'text({text}).instance(0));').click()
+                                        f'text("{text}").instance(0));').click()
 
     def fing_wait(self, locator):
         logging.info(f'wait-->{locator}')

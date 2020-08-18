@@ -1,0 +1,2 @@
+INFO:root:driver.find_element(*locator).click()-->('xpath', '//*[@text="通讯录"]')
+INFO:root:roll-->添加成员

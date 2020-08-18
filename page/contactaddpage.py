@@ -14,7 +14,7 @@ class ContactAddPage(BasePage):
         return self
     def set_gender(self,sex):
         # 选择性别
-        locator_sex=(MobileBy.ID, "com.tencent.wework:id/e93")
+        locator_sex=(MobileBy.ID, "com.tencent.wework:id/b0j")
         self.find_click(locator_sex)
         # self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/e93").click()
         if sex == '男':
@@ -37,7 +37,7 @@ class ContactAddPage(BasePage):
     def click_save(self):
         from page.addmemberpage import AddMemberPag
         # 保存
-        locator_click=(MobileBy.ID, 'com.tencent.wework:id/hi9')
+        locator_click=(MobileBy.XPATH, '//*[@text="保存"]')
         self.find_click(locator_click)
         # self.driver.find_element(MobileBy.ID, 'com.tencent.wework:id/hi9').click()
         return AddMemberPag(self.driver)

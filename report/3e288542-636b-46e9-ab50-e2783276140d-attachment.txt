@@ -1,0 +1,9 @@
+INFO:root:driver.find_element(*locator).click()-->('xpath', '//*[@text="通讯录"]')
+INFO:root:roll-->添加成员
+INFO:root:driver.find_element(*locator).click()-->('id', 'com.tencent.wework:id/cgl')
+INFO:root:driver.find_element(*locator)-->('xpath', "//*[@text='必填']")
+INFO:root:driver.find_element(*locator).click()-->('id', 'com.tencent.wework:id/b0j')
+INFO:root:driver.find_element(*locator).click()-->('xpath', "//*[@text='男']")
+INFO:root:driver.find_element(*locator)-->('xpath', "//*[@text='手机号']")
+INFO:root:driver.find_element(*locator).click()-->('xpath', '//*[@text="保存"]')
+INFO:root:wait-->('xpath', '//*[@class="android.widget.Toast"]')
