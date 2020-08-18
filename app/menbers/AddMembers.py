@@ -3,6 +3,8 @@
     1.实现添加成员测试需求
     2/实现删除成员测试需求
 '''
+import logging
+
 from appium import webdriver
 from appium.webdriver.common.mobileby import MobileBy
 import allure
@@ -15,13 +17,14 @@ import time
 
 @allure.feature('添加成员功能')
 class TestMembers:
-    with open('../data/data.yaml', encoding='UTF-8') as f:
+    logging.basicConfig(level=logging.INFO)
+    with open('../../data/data.yaml', encoding='UTF-8') as f:
         data = yaml.safe_load(f)
 
     def setup(self):
         cap_des = {
             'platformName': 'android',
-            'deviceName': '04157df40bf53115',
+            # 'deviceName': '04157df40bf53115',
             'appPackage': 'com.tencent.wework',
             'appActivity': '.launch.LaunchSplashActivity',
             'noReset': 'true',
@@ -32,7 +35,7 @@ class TestMembers:
 
         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', cap_des)
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(50)
 
     def teardown(self):
         self.driver.quit()
@@ -58,12 +61,12 @@ class TestMembers:
                                      'text("添加成员").instance(0));').click()
 
         with allure.step('点击手动输入添加'):
-            self.driver.find_element(MobileBy.ID, 'com.tencent.wework:id/cfu').click()
+            self.driver.find_element(MobileBy.ID, 'com.tencent.wework:id/cgl').click()
         with allure.step('进行添加成员'):
             # 输入姓名
             self.driver.find_element(MobileBy.XPATH, "//*[@text='必填']").send_keys(name)
             # 选择性别
-            self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/e93").click()
+            self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/b0j").click()
             if sex == '男':
                 print(sex)
                 locator = (MobileBy.XPATH, "//*[@text='男']")
@@ -75,7 +78,7 @@ class TestMembers:
             # 输入手机号
             self.driver.find_element(MobileBy.XPATH, "//*[@text='手机号']").send_keys(phone_no)
             # 保存
-            self.driver.find_element(MobileBy.ID, 'com.tencent.wework:id/hi9').click()
+            self.driver.find_element(MobileBy.XPATH, '//*[@text="保存"]').click()
             # self.driver.find_element(MobileBy.XPATH,'//*[@class="android.widget.Toast"]')
             # 验证验证toast提示"添加成功"
             element = WebDriverWait(self.driver, 10).until(
@@ -83,7 +86,7 @@ class TestMembers:
             result = element.text
             assert "添加成功" in result
 
-    with open('../data/delData.yaml',encoding='UTF-8') as f:
+    with open('../../data/delData.yaml', encoding='UTF-8') as f:
         del_data = yaml.safe_load(f)
 
     @allure.story('删除成员')
@@ -93,18 +96,21 @@ class TestMembers:
         with allure.step('进入通讯录'):
             self.driver.find_element(MobileBy.XPATH, '//*[@text="通讯录"]').click()
         with allure.step('搜索'):
-            self.driver.find_element(MobileBy.ID, 'hib').click()
+            self.driver.find_element(MobileBy.ID, 'com.tencent.wework:id/hk9').click()
         with allure.step('输入要删除的成员'):
             self.driver.find_element(MobileBy.XPATH, '//*[@text="搜索"]').send_keys(name)
+        time.sleep(3)
         with allure.step('选择删除的成员'):
-            elements_list = self.driver.find_elements(MobileBy.XPATH, '//*[@text="霍格沃兹_6"]')
-            if len(elements_list) < 2:
-                print('没有这个联系人')
-                return
+            elements_list = self.driver.find_elements(MobileBy.XPATH, f'//*[@text="{name}"]')
+        print(len(elements_list))
+        logging.info('删除成员之前:'+str(len(elements_list)))
+        if len(elements_list) < 2:
+            print('没有这个联系人')
+            return
 
-            elements_list[1].click()
-            self.driver.find_element(MobileBy.ID, 'hi2').click()
-            self.driver.find_element(MobileBy.XPATH, '//*[@text="编辑成员"]').click()
+        elements_list[1].click()
+        self.driver.find_element(MobileBy.ID, 'com.tencent.wework:id/hjz').click()
+        self.driver.find_element(MobileBy.XPATH, '//*[@text="编辑成员"]').click()
         with allure.step('删除的成员'):
             self.driver.find_element(MobileBy.ANDROID_UIAUTOMATOR,
                                      'new UiScrollable'
@@ -117,5 +123,8 @@ class TestMembers:
 
             self.driver.find_element(MobileBy.XPATH, "//*[@text='确定']").click()
         with allure.step('验证是否删除成功'):
+            time.sleep(2)
             elements_list_after = self.driver.find_elements(MobileBy.XPATH, f'//*[@text="{name}"]')
-            assert len(elements_list) - len(elements_list_after) == 1
+            logging.info('删除成员之后:' + str(len(elements_list_after)))
+            sub=len(elements_list) - len(elements_list_after)
+            assert sub == 1

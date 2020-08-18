@@ -1,0 +1,2 @@
+[32mINFO    [0m root:AddMembers.py:106 删除成员之前:2
+[32mINFO    [0m root:AddMembers.py:128 删除成员之后:1
